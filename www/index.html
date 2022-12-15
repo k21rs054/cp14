@@ -1,0 +1,658 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <script src="leaflet/leaflet.js"></script>
+   <script>
+        function dist(sx,sy,ex,ey) {
+            return Math.sqrt((ex-sx)*(ex-sx)+(ey-sy)*(ey-sy));
+        }
+        function init() {
+            $('#btnA').on("click",function(e) {
+                btnAClick(e);
+            });
+
+            map = L.map('map').setView([35.681218730657406, 139.767124799427888], 10);
+
+            var tiles = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+            });
+
+            map.addLayer(tiles);
+            marker = L.marker([0,0]).addTo(map);
+            marker2 = L.marker([0,0]).addTo(map);
+
+        }
+
+        var map;
+        var marker;
+        var marker2;
+
+        var lat;
+        var lon;
+
+        function btnAClick(e){
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+        }
+
+        function onSuccess(pos) {
+            lat = pos.coords.latitude;
+            lon = pos.coords.longitude;
+            marker.setLatLng([lat, lon]);
+            map.panTo([lat, lon]);
+        }
+        function onError(e) {
+            $("#data").html("error:" + e.name + ":" + e.message);
+        }
+
+        //都道府県名入力
+        function showProfile(){
+            var canvas = $("#canvas")[0];
+            var ctx = canvas.getContext("2d");
+            var img = new Image();
+            var name = document.getElementById("name").value;
+            if(name == "北海道"){
+                lat = 43.06434212130744;
+                lon = 141.34683788715964;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "hokkaido.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・北海道札幌市";
+                document.getElementById("exp").value = "さっぽろ雪まつりが有名";
+            }else if(name == "青森県"){
+                lat = 40.82425462363498;
+                lon = 140.74009384094438;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "aomori.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・青森県青森市";
+                document.getElementById("exp").value = "青森ねぶた祭が有名";
+            }else if(name == "岩手県"){
+                lat = 39.703403124481;
+                lon = 141.1525572112599;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "iwate.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・岩手県盛岡市";
+                document.getElementById("exp").value = "わんこそばが有名";
+            }else if(name == "宮城県"){
+                lat = 38.26867165894463;
+                lon = 140.87218082876362;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "miyagi.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・宮城県仙台市";
+                document.getElementById("exp").value = "牛タンが有名";
+            }else if(name == "秋田県"){
+                lat = 39.71871975911089;
+                lon = 140.10256684218425;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "akita.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・秋田県秋田市";
+                document.getElementById("exp").value = "なまはげが有名";
+            }else if(name == "山形県"){
+                lat = 38.24039220583991;
+                lon = 140.36354079940097;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "yamagata.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・山形県山形市";
+                document.getElementById("exp").value = "さくらんぼが有名";
+            }else if(name == "福島県"){
+                lat = 37.750297105726126;
+                lon = 140.46819952004208;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "fukushima.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・宮城県仙台市";
+                document.getElementById("exp").value = "喜多方ラーメン（喜多方市）が有名";
+            }else if(name == "茨城県"){
+                lat = 36.342099001018106;
+                lon = 140.44693207736955;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "ibaraki.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・茨城県水戸市";
+                document.getElementById("exp").value = "納豆が有名";
+            }else if(name == "栃木県"){
+                lat = 36.56581262729972;
+                lon = 139.8836240952367;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "tochigi.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・栃木県宇都宮市";
+                document.getElementById("exp").value = "宇都宮餃子が有名";
+            }else if(name == "群馬県"){
+                lat = 36.3906246866278;
+                lon = 139.06031449942034;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "gumma.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・群馬県前橋市";
+                document.getElementById("exp").value = "草津温泉（草津町）が有名";
+            }else if(name == "埼玉県"){
+                lat = 35.85729708556565;
+                lon = 139.6487171129045;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "saitama.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・埼玉県さいたま市";
+                document.getElementById("exp").value = "クレヨンしんちゃん（春日部市）が有名";
+            }else if(name == "千葉県"){
+                lat = 35.605044368108025;
+                lon = 140.12331727008987;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "chiba.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・千葉県千葉市";
+                document.getElementById("exp").value = "東京ディズニーランド（浦安市）が有名";
+            }else if(name == "東京都"){
+                lat = 35.68964525290002;
+                lon = 139.69209747726026;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "tokyo.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・東京都新宿区";
+                document.getElementById("exp").value = "日本の首都";
+            }else if(name == "神奈川県"){
+                lat = 35.44771064051341;
+                lon = 139.64258972924443;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "kanagawa.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・神奈川県横浜市";
+                document.getElementById("exp").value = "横浜中華街が有名";
+            }else if(name == "新潟県"){
+                lat = 37.90225869106919;
+                lon = 139.02348944268402;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "niigata.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・新潟県新潟市";
+                document.getElementById("exp").value = "お米が有名";
+            }else if(name == "富山県"){
+                lat = 36.69550865711457;
+                lon = 137.21126139966213;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "toyama.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・富山県富山市";
+                document.getElementById("exp").value = "黒部ダム（立山町）が有名";
+            }else if(name == "石川県"){
+                lat = 36.59467076017768;
+                lon = 136.62564124217354;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "ishikawa.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・石川県金沢市";
+                document.getElementById("exp").value = "兼六園が有名";
+            }else if(name == "福井県"){
+                lat = 36.06507485821888;
+                lon = 136.2217556096958;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "fukui.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・福井県福井市";
+                document.getElementById("exp").value = "東尋坊（坂井市）が有名";
+            }else if(name == "山梨県"){
+                lat = 35.66414024177304;
+                lon = 138.56855705944227;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "yamanashi.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・山梨県甲府市";
+                document.getElementById("exp").value = "富士急ハイランド（富士吉田市）が有名";
+            }else if(name == "長野県"){
+                lat = 36.65127335237656;
+                lon = 138.180961270801;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "nagano.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・長野県長野市";
+                document.getElementById("exp").value = "松本城（松本市）が有名";
+            }else if(name == "岐阜県"){
+                lat = 35.39114061398531;
+                lon = 136.72219899966396;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "gifu.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・岐阜県岐阜市";
+                document.getElementById("exp").value = "白川郷（白川村）が有名";
+            }else if(name == "静岡県"){
+                lat = 34.97686414299862;
+                lon = 138.3829460426468;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "shizuoka.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・静岡県静岡市";
+                document.getElementById("exp").value = "お茶が有名";
+            }else if(name == "愛知県"){
+                lat = 35.180286491485326;
+                lon = 136.9067015708092;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "aichi.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・愛知県名古屋市";
+                document.getElementById("exp").value = "名古屋城が有名";
+            }else if(name == "三重県"){
+                lat = 34.73028715448952;
+                lon = 136.50880371048564;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "mie.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・三重県津市";
+                document.getElementById("exp").value = "伊勢神宮（伊勢市）が有名";
+            }else if(name == "滋賀県"){
+                lat = 35.00446076071147;
+                lon = 135.86852337103866;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "shiga.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・滋賀県大津市";
+                document.getElementById("exp").value = "琵琶湖が有名";
+            }else if(name == "京都府"){
+                lat = 35.020924697470726;
+                lon = 135.75522274534038;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "kyoto.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・京都府京都市";
+                document.getElementById("exp").value = "清水寺が有名";
+            }else if(name == "大阪府"){
+                lat = 34.68639968812703;
+                lon = 135.52012072683883;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "osaka.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・大阪府大阪市";
+                document.getElementById("exp").value = "USJが有名";
+            }else if(name == "兵庫県"){
+                lat = 34.69095636391845;
+                lon = 135.1833093605077;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "hyogo.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・兵庫県神戸市";
+                document.getElementById("exp").value = "姫路城（姫路市）が有名";
+            }else if(name == "奈良県"){
+                lat = 34.68532890550517;
+                lon = 135.83288684262916;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "nara.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・奈良県奈良市";
+                document.getElementById("exp").value = "東大寺が有名";
+            }else if(name == "和歌山県"){
+                lat = 34.226021090043695;
+                lon = 135.1674669996702;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "wakayama.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・和歌山県和歌山市";
+                document.getElementById("exp").value = "有田みかんが有名";
+            }else if(name == "鳥取県"){
+                lat = 35.50403922788847;
+                lon = 134.23813990531121;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "tottori.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・鳥取県鳥取市";
+                document.getElementById("exp").value = "鳥取砂丘が有名";
+            }else if(name == "島根県"){
+                lat = 35.47256688568842;
+                lon = 133.05070154171412;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "shimane.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・島根県松江市";
+                document.getElementById("exp").value = "出雲大社（出雲市）が有名";
+            }else if(name == "岡山県"){
+                lat = 34.661523561687076;
+                lon = 133.93455679897718;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "okayama.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・岡山県岡山市";
+                document.getElementById("exp").value = "ももたろうが有名";
+            }else if(name == "広島県"){
+                lat = 34.396541615714945;
+                lon = 132.45963002392338;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "hiroshima.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・広島県広島市";
+                document.getElementById("exp").value = "厳島神社（廿日市市）が有名";
+            }else if(name == "山口県"){
+                lat = 34.18591601017537;
+                lon = 131.47075838603567;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "yamaguchi.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・山口県山口市";
+                document.getElementById("exp").value = "フグが有名";
+            }else if(name == "徳島県"){
+                lat = 34.06582284853683;
+                lon = 134.55926102899457;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "tokushima.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・徳島県徳島市";
+                document.getElementById("exp").value = "阿波踊りが有名";
+            }else if(name == "香川県"){
+                lat = 34.34009884393223;
+                lon = 134.04326898399387;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "kagawa.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・香川県高松市";
+                document.getElementById("exp").value = "うどんが有名";
+            }else if(name == "愛媛県"){
+                lat = 33.84162231648397;
+                lon = 132.7656603989896;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "ehime.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・愛媛県松山市";
+                document.getElementById("exp").value = "松山城が有名";
+            }else if(name == "高知県"){
+                lat = 33.55967799948168;
+                lon = 133.53108909898802;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "kochi.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・高知県高知市";
+                document.getElementById("exp").value = "坂本龍馬が有名";
+            }else if(name == "福岡県"){
+                lat = 33.60627791875291;
+                lon = 130.41802909899178;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "fukuoka.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・福岡県福岡市";
+                document.getElementById("exp").value = "豚骨ラーメンが有名";
+            }else if(name == "佐賀県"){
+                lat = 33.24942051620528;
+                lon = 130.29882565717128;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "saga.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・佐賀県佐賀市";
+                document.getElementById("exp").value = "有田焼が有名";
+            }else if(name == "長崎県"){
+                lat = 32.75030006876882;
+                lon = 129.86788694129345;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "nagasaki.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・長崎県長崎市";
+                document.getElementById("exp").value = "軍艦島が有名";
+            }else if(name == "熊本県"){
+                lat = 32.78979018456969;
+                lon = 130.74146717015327;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "kumamoto.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・熊本県熊本市";
+                document.getElementById("exp").value = "阿蘇山が有名";
+            }else if(name == "大分県"){
+                lat = 33.23814571991086;
+                lon = 131.6126743985438;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "oita.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・大分県";
+                document.getElementById("exp").value = "温泉が有名";
+            }else if(name == "宮崎県"){
+                lat = 31.910863807108917;
+                lon = 131.42390648967938;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "miyazaki.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・宮崎県宮崎市";
+                document.getElementById("exp").value = "マンゴーが有名";
+            }else if(name == "鹿児島県"){
+                lat = 31.560191251724962;
+                lon = 130.55797216270437;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "kagoshima.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・鹿児島県鹿児島市";
+                document.getElementById("exp").value = "桜島が有名";
+            }else if(name == "沖縄県"){
+                lat = 26.212503215682894;
+                lon = 127.68077089952824;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "okinawa.png";
+                document.getElementById("wrdPlace").value = "国・地域：日本・沖縄県那覇市";
+                document.getElementById("exp").value = "美ら海水族館が有名";
+            }else{
+            }
+            //写真のロード
+            img.onload = function() {
+                    ctx.drawImage(img, 0, 0, 100, 100);
+            };
+            document.getElementById("sTime").value = "サマータイム：無";
+        }
+
+        //時計のセット
+        function sekaiTokei(){
+            setInterval("timeSet()",1000);
+        }
+
+        //海外の観光地＆時計
+        function timeSet(){
+            var num = document.wrdClock.city.selectedIndex;
+            var jisa = parseInt(document.wrdClock.city.options[num].value);
+            var japan= (new Date()).getTime();
+            var jikan = new Date( japan + jisa*60*60*1000 );
+            var year = jikan.getFullYear();
+            var month= jikan.getMonth()+1;
+            var day  = jikan.getDate();
+            var hour = jikan.getHours();
+            var minu = jikan.getMinutes();
+            var sec  = jikan.getSeconds();
+            if (hour < 10) hour="0"+hour;
+            if (minu < 10) minu="0"+minu;
+            if (sec  < 10) sec ="0"+sec;
+            var wDate = year+"年"+month+"月"+day+"日";
+            var wTime = hour+":"+minu+":"+sec;
+            document.wrdClock.wrdTime.value = wDate+" "+wTime;
+
+            //写真の設定（海外）
+            var canvas = $("#mycanvas")[0];
+            var ctx = canvas.getContext("2d");
+            var img = new Image();
+
+            //シルエットの削除
+            var canvass = $("#canvas")[0];
+            var ctxs = canvass.getContext("2d");
+            var imgs = new Image();
+
+            //観光地の選択→時計・写真の設定
+            var place = document.wrdClock.city.options[num].value;
+            if(place == "-17"){
+                lat = 37.819835298726524;
+                lon = -122.47854838899951;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "01.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：アメリカ・サンフランシスコ";
+                document.getElementById("sTime").value = "サマータイム：有（サマータイム期間外）";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "全長2737mの大きな吊橋です。";
+            }else if(place == "-16"){
+                lat = 37.819835298726524;
+                lon = -122.47854838899951;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "01.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：アメリカ・サンフランシスコ";
+                document.getElementById("sTime").value = "サマータイム：有（サマータイム期間中）";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "全長2737mの大きな吊橋です。";
+            }else if(place == "-8"){
+                lat = 48.8583418233741;
+                lon = 2.2944812986853487;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "02.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：フランス・パリ";
+                document.getElementById("sTime").value = "サマータイム：有（サマータイム期間外）";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "高さが324mで東京タワーの方が約9m高いです。";
+            }else if(place == "-7"){
+                lat = 48.8583418233741;
+                lon = 2.2944812986853487;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "02.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：フランス・パリ";
+                document.getElementById("sTime").value = "サマータイム：有（サマータイム期間中）";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "高さが324mで東京タワーの方が約9m高いです。";
+            }else if(place == "+1"){
+                lat = -33.85679327089705;
+                lon = 151.215285971272;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "03.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：オーストラリア・シドニー";
+                document.getElementById("sTime").value = "サマータイム：有（サマータイム期間外）";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "世界最大の機械式パイプオルガンがあります。";
+            }else if(place == "+2"){
+                lat = -33.85679327089705;
+                lon = 151.215285971272;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "03.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：オーストラリア・シドニー";
+                document.getElementById("sTime").value = "サマータイム：有（サマータイム期間中）";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "世界最大の機械式パイプオルガンがあります。";
+            }else if(place == "-2"){
+                lat = 13.412437972372414;
+                lon = 103.86698569959808;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "04.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：カンボジア・シェムリアップ州";
+                document.getElementById("sTime").value = "サマータイム：無";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "東西1500m、南北1300m、幅190mの濠で囲まれています。";
+            }else if(place == "-1"){
+                lat = 1.2867871845534236;
+                lon = 103.85450043676882;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "05.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：シンガポール";
+                document.getElementById("sTime").value = "サマータイム：無";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "高さが8.6m、重さ70tの像でシンガポールの象徴です。";
+            }else if(place == "-19"){
+                lat = 21.276255095314824;
+                lon = -157.82710820013673;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "06.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：アメリカ・ハワイ州";
+                document.getElementById("sTime").value = "サマータイム：無";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "約3kmにわたって延びる大きなビーチです。";
+            }else if(place == "-13"){
+                lat = -20.169208611075053;
+                lon = -67.64701872502796;
+                marker.setLatLng([lat, lon]);
+                map.panTo([lat, lon]);
+                img.src = "07.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：ボリビア・ウユニ";
+                document.getElementById("sTime").value = "サマータイム：無";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "雨季の時期には湖面が鏡のようになります。";
+            }else if(place == "0000"){
+                img.src = "x.jpg";
+                imgs.src = "x.jpg";
+                document.getElementById("wrdPlace").value = "国・地域：日本";
+                document.getElementById("sTime").value = "サマータイム：無";
+                document.getElementById("name").value = "";
+                document.getElementById("exp").value = "";
+            }else{
+                img.src = "x.jpg";
+                document.getElementById("sTime").value = "サマータイム：無";
+            }
+            //写真のロード
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, 200, 100);
+            };
+            imgs.onload = function() {
+                ctxs.drawImage(imgs, 0, 0, 100, 100);
+            };
+        }
+
+    </script>
+
+
+</head>
+<body onload="init();sekaiTokei()">
+    <canvas id="mycanvas" width="180" height="90">Test</canvas>
+    <canvas id="canvas" width="150" height="150">Test</canvas>
+    <div id="map"> </div>
+    <button id="btnA">現在地の表示</button>
+    <h1>～観光地巡り～</h1>
+    <h2>行きたい場所を選んでください。</h2>
+    <h3 id = "setumei0">*がついているものはサマータイム</h3>
+    <h3 id = "setumei">都道府県を入力するときは上のドロップボックスの「都道府県名入力」を選んでください。</h3>
+    <h3 id = "setumei2">　　↑都道府県名入力はこちら</h3>
+    <h3 id = "setumei3">　　↓入力したらこちらをクリック</h3>
+    <h3 id = "setumei4">　↓ドロップボックスが空欄の時に押してください。↓</h3>
+    <input type="text" id="name" size = "10">
+    <br>
+    <button onclick="showProfile()" id = "showProfile">移動</button>
+    <form name="wrdClock">
+        <select name="city" id = "city">
+            <option value= "0000"></option>
+            <option value= "0">都道府県名入力</option>
+            <option value= "-17">ゴールデンゲートブリッジ</option>
+            <option value= "-16">ゴールデンゲートブリッジ*</option>
+            <option value= "-8">エッフェル塔</option>
+            <option value= "-7">エッフェル塔*</option>
+            <option value= "+1">オペラハウス</option>
+            <option value= "+2">オペラハウス*</option>
+            <option value= "-2">アンコール・ワット</option>
+            <option value= "-1">マーライオン公園</option>
+            <option value= "-19">ワイキキ・ビーチ</option>
+            <option value= "-13">ウユニ塩湖</option>
+        </select>
+    <br>
+    <input id= "wrdPlace" size = "48">
+    <input id= "sTime" size = "48">
+    <input id = "exp" size = "48">
+    <form name="wrdClock">
+        <br>
+        <input id ="text" name="wrdTime" value="" size="48">
+    </form>
+</body>
+</html>

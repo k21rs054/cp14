@@ -1,0 +1,70 @@
+/**/
+    body {    
+        font-size: 62.5%; 
+        font-size: 0.5em;
+        margin : 0px;
+        background-color: #38A8F3;
+        color: #000088;
+    }
+    #map {
+        position : absolute;
+        top : 300px;
+        left : 0px;
+    	width:355px;
+    	height:280px;
+    }
+    #btnA {
+        font-size: 15px;
+        position:absolute; top:270px; left:0px; width:355px;height:30px;
+        color: #FF66CC;
+    }
+    #data {
+        font-size: 4em;
+        position:absolute; top:650px; left:20px; width:85%; height:60px;
+        
+    }
+    #mycanvas{
+        position:absolute; top:120px; left:190px;
+    }
+    #canvas{
+        position:absolute; top:0px; left:200px;
+    }
+    #wrdPlace{
+        position:absolute; top:600px; left:0px;
+    }
+    #sTime{
+        position:absolute; top:620px; left:0px;
+    }
+    #text{
+        position:absolute; top:580px; left:0px;
+    }
+    #exp{
+        position:absolute; top:640px; left:0px;
+    }
+    #showProfile{
+        position:absolute; top:210px; left:0px;
+        color: #FF66CC;
+    }
+    #name{
+        position:absolute; top:140px; left:0px;
+        color: #FF66CC;
+    }
+    #city{
+        position:absolute; top:80px; left:0px;
+        color: #FF66CC;
+    }
+    #setumei0{
+        position:absolute; top:55px; left:0px;
+    }
+    #setumei{
+        position:absolute; top:95px; left:0px;
+    }
+    #setumei2{
+        position:absolute; top:160px; left:0px;
+    }
+    #setumei3{
+        position:absolute; top:180px; left:0px;
+    }
+    #setumei4{
+        position:absolute; top:235px; left:10px;
+    }
