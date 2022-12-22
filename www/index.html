@@ -14,8 +14,8 @@
        //ニフクラとの連携
        let ncmb = new NCMB(appKey, clientKey);
        let UTdata = ncmb.DataStore("Maps");
-       let latitude = "latitude"; //緯度
-       let longitude = "longitude"; //経度
+       //let latitude = "latitude"; //緯度
+       //let longitude = "longitude"; //経度
 
         function dist(sx,sy,ex,ey) {
             return Math.sqrt((ex-sx)*(ex-sx)+(ey-sy)*(ey-sy));
@@ -86,14 +86,15 @@
     <div>
         <input type="text" id="data1" placeholder="緯度">
         <input type="text" id="data2" placeholder="経度">
-        <button id="button" onclick="enterData()">Enter</button>
     </div>
+    <button id="button" onclick="enterData()">Enter</button>
     <br>
     <button id="button" onclick="enterData()">Fetch All</button>
     <button id="button" onclick="enterData()">Delete</button>
     <canvas id="mycanvas" width="180" height="90">Test</canvas>
     <canvas id="canvas" width="150" height="150">Test</canvas>
     <div id="map"> </div>
+    <br>
     <button id="btnA">現在地の表示</button>
 </body>
 </html>
