@@ -622,42 +622,18 @@
 
 </head>
 <body onload="init();sekaiTokei()">
+    <h1>～観光地巡り～</h1>
+    <div>
+        <input type="text" id="data1" placeholder="緯度">
+        <input type="text" id="data2" placeholder="経度">
+        <button id="button" onclick="enterData()">Enter</button>
+    </div>
+    <br>
+    <button id="button" onclick="enterData()">Enter</button>
+    <button id="button" onclick="enterData()">Enter</button>
     <canvas id="mycanvas" width="180" height="90">Test</canvas>
     <canvas id="canvas" width="150" height="150">Test</canvas>
     <div id="map"> </div>
     <button id="btnA">現在地の表示</button>
-    <h1>～観光地巡り～</h1>
-    <h2>行きたい場所を選んでください。</h2>
-    <h3 id = "setumei0">*がついているものはサマータイム</h3>
-    <h3 id = "setumei">都道府県を入力するときは上のドロップボックスの「都道府県名入力」を選んでください。</h3>
-    <h3 id = "setumei2">　　↑都道府県名入力はこちら</h3>
-    <h3 id = "setumei3">　　↓入力したらこちらをクリック</h3>
-    <h3 id = "setumei4">　↓ドロップボックスが空欄の時に押してください。↓</h3>
-    <input type="text" id="name" size = "10">
-    <br>
-    <button onclick="showProfile()" id = "showProfile">移動</button>
-    <form name="wrdClock">
-        <select name="city" id = "city">
-            <option value= "0000"></option>
-            <option value= "0">都道府県名入力</option>
-            <option value= "-17">ゴールデンゲートブリッジ</option>
-            <option value= "-16">ゴールデンゲートブリッジ*</option>
-            <option value= "-8">エッフェル塔</option>
-            <option value= "-7">エッフェル塔*</option>
-            <option value= "+1">オペラハウス</option>
-            <option value= "+2">オペラハウス*</option>
-            <option value= "-2">アンコール・ワット</option>
-            <option value= "-1">マーライオン公園</option>
-            <option value= "-19">ワイキキ・ビーチ</option>
-            <option value= "-13">ウユニ塩湖</option>
-        </select>
-    <br>
-    <input id= "wrdPlace" size = "48">
-    <input id= "sTime" size = "48">
-    <input id = "exp" size = "48">
-    <form name="wrdClock">
-        <br>
-        <input id ="text" name="wrdTime" value="" size="48">
-    </form>
 </body>
 </html>
