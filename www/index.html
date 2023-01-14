@@ -12,8 +12,8 @@
     <script src="leaflet/leaflet.js"></script>
    <script>
        //ニフクラとの連携
-       let ncmb = new NCMB(appKey, clientKey);
-       let Maps = ncmb.DataStore("Maps");
+       var ncmb = new NCMB(appKey, clientKey);
+       var TestClass = ncmb.DataStore("MapsTest");
        //let latitude = "latitude"; //緯度
        //let longitude = "longitude"; //経度
 
@@ -60,7 +60,7 @@
             $("#data").html("error:" + e.name + ":" + e.message);
         }
 
-        //都道府県名入力
+        /*都道府県名入力
         function showProfile(){
             var canvas = $("#canvas")[0];
             var ctx = canvas.getContext("2d");
@@ -88,23 +88,38 @@
             })
             .catch(function(results) {
                 $("#display").removeClass();
-          $("#display").addClass("bg-warning");
-          $("#display").html("enter fail");
-        })
-    }
+                $("#display").addClass("bg-warning");
+                $("#display").html("enter fail");
+            })
+        }*/
+        function fetchAll() {
+            var TestClass = ncmb.DataStore("MapsTest");
+            TestClass.fetchAll()
+            .then(function(results){
+                var msg = "<table><tr><th>場所</th><th>緯度</th><th>経度</th></tr>";
+                for(var i = 0; i < results.length; i++){
+                    var data=results[i].get("area");
+                    var ido=results[i].get("latitude");
+                    var keido=results[i].get("longitude");
+                    msg += "<tr><td>" + data + "</td><td>" + ido + "</td><td>" + keido + "</td></tr>";
+                }
+                msg += "</table>";
+                $("#message").html(msg);
+            })
+        }
 
     </script>
 
 
 </head>
-<body onload="init();sekaiTokei()">
+<body onload="init();">
     <h1>～観光地巡り～</h1>
     <div>
         <input type="text" id="data1" placeholder="緯度">
         <input type="text" id="data2" placeholder="経度">
     </div>
     <button id="button" onclick="enterData()">Enter</button>
-    <button id="button" onclick="enterData()">Fetch All</button>
+    <button id="button" onclick="fetchAll()">Fetch All</button>
     <canvas id="mycanvas" width="180" height="90">Test</canvas>
     <canvas id="canvas" width="150" height="150">Test</canvas>
     <div id="map"> </div>
