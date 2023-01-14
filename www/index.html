@@ -60,38 +60,15 @@
             $("#data").html("error:" + e.name + ":" + e.message);
         }
 
-        /*都道府県名入力
-        function showProfile(){
-            var canvas = $("#canvas")[0];
-            var ctx = canvas.getContext("2d");
-            var img = new Image();
-            var name = document.getElementById("name").value;
-            if(name == "北海道"){
-                lat = 43.06434212130744;
-                lon = 141.34683788715964;
-                marker.setLatLng([lat, lon]);
-                map.panTo([lat, lon]);
-                img.src = "hokkaido.png";
-                document.getElementById("wrdPlace").value = "国・地域：日本・北海道札幌市";
-                document.getElementById("exp").value = "さっぽろ雪まつりが有名";
-            }
+        //自分で入力
+        function enterButton(){
+            let ido = $("#data1").val();
+            let keido = $("#data2").val();
+            lat = ido;
+            lon = keido;
+            marker.setLatLng([lat, lon]);
+            map.panTo([lat, lon]);
         }
-        function enterData() {
-            let uTdata = new UTdata();
-            let value = parseInt($("#data").val());
-            uTdata.set(key, value)
-            .save()
-            .then(function(results) {
-                $("#display").removeClass();
-                $("#display").addClass("bg-success");
-                $("#display").html("enter success");
-            })
-            .catch(function(results) {
-                $("#display").removeClass();
-                $("#display").addClass("bg-warning");
-                $("#display").html("enter fail");
-            })
-        }*/
         function fetchAll() {
             var TestClass = ncmb.DataStore("MapsTest");
             TestClass.fetchAll()
@@ -115,10 +92,10 @@
 <body onload="init();">
     <h1>～観光地巡り～</h1>
     <div>
-        <input type="text" id="data1" placeholder="緯度">
-        <input type="text" id="data2" placeholder="経度">
+        <input type="number" id="data1" placeholder="緯度">
+        <input type="number" id="data2" placeholder="経度">
     </div>
-    <button id="button" onclick="enterData()">Enter</button>
+    <button id="button" onclick="enterButton()">Enter</button>
     <button id="button" onclick="fetchAll()">Fetch All</button>
     <canvas id="mycanvas" width="180" height="90">Test</canvas>
     <canvas id="canvas" width="150" height="150">Test</canvas>
