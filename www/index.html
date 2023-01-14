@@ -90,7 +90,7 @@
 
         function enterData() {
             let uTdata = new UTdata();
-            let value = parseInt($("#data0").val());
+            let value = $("#data0").val();
             uTdata.set(key, value)
                 .save()
             .then(function(results) {
