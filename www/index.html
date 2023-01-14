@@ -76,6 +76,22 @@
                 document.getElementById("exp").value = "さっぽろ雪まつりが有名";
             }
         }
+        function enterData() {
+            let uTdata = new UTdata();
+            let value = parseInt($("#data").val());
+            uTdata.set(key, value)
+            .save()
+            .then(function(results) {
+                $("#display").removeClass();
+                $("#display").addClass("bg-success");
+                $("#display").html("enter success");
+            })
+            .catch(function(results) {
+                $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("enter fail");
+        })
+    }
 
     </script>
 
@@ -88,9 +104,7 @@
         <input type="text" id="data2" placeholder="経度">
     </div>
     <button id="button" onclick="enterData()">Enter</button>
-    <br>
     <button id="button" onclick="enterData()">Fetch All</button>
-    <button id="button" onclick="enterData()">Delete</button>
     <canvas id="mycanvas" width="180" height="90">Test</canvas>
     <canvas id="canvas" width="150" height="150">Test</canvas>
     <div id="map"> </div>
