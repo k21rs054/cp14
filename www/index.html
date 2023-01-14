@@ -15,6 +15,7 @@
        var ncmb = new NCMB(appKey, clientKey);
        var TestClass = ncmb.DataStore("MapsTest");
        let UTdata = ncmb.DataStore("UpdateTest");
+       let key = "score";
        //let latitude = "latitude"; //緯度
        //let longitude = "longitude"; //経度
 
@@ -87,6 +88,23 @@
             })
         }
 
+        function enterData() {
+            let uTdata = new UTdata();
+            let value = parseInt($("#data0").val());
+            uTdata.set(key, value)
+                .save()
+            .then(function(results) {
+                $("#display").removeClass();
+                $("#display").addClass("bg-success");
+                $("#display").html("enter success");
+                })
+                .catch(function(results) {
+                $("#display").removeClass();
+                $("#display").addClass("bg-warning");
+                $("#display").html("enter fail");
+            })
+        }
+
     </script>
 
 
@@ -104,12 +122,13 @@
     <div id="map"> </div>
     <div>
         <input type="text" id="data0" placeholder="保存したい情報">
-        <button id="button" onclick="enterData()">Enter</button>
+        <button id="button" onclick="enterData()">送信</button>
     </div>
     <br>
     <button id="btnA">現在地の表示</button>
     <div id="now">現在地の緯度と経度</div>
     <br>
     <div id="message">message area</div>
+    <div id="display">message area</div>
 </body>
 </html>
