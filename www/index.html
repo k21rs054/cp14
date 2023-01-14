@@ -13,7 +13,7 @@
    <script>
        //ニフクラとの連携
        let ncmb = new NCMB(appKey, clientKey);
-       let UTdata = ncmb.DataStore("Maps");
+       let Maps = ncmb.DataStore("Maps");
        //let latitude = "latitude"; //緯度
        //let longitude = "longitude"; //経度
 
@@ -110,5 +110,6 @@
     <div id="map"> </div>
     <br>
     <button id="btnA">現在地の表示</button>
+    <div id="message">message area</div>
 </body>
 </html>
