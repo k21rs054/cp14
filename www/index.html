@@ -57,7 +57,7 @@
             lon = pos.coords.longitude;
             marker.setLatLng([lat, lon]);
             map.panTo([lat, lon]);
-            $("#now").html("緯度" + lat + "<br>" + "経度" + lon);
+            $("#now").html("緯度：" + lat + "<br>" + "経度：" + lon);
         }
         function onError(e) {
             $("#now").html("error:" + e.name + ":" + e.message);
